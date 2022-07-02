@@ -1,0 +1,573 @@
+getgenv().AimlockKey = "c"
+getgenv().AimRadius = 30
+getgenv().ThirdPerson = false
+getgenv().FirstPerson = false
+getgenv().TeamCheck = false
+getgenv().PredictMovement = true
+getgenv().PredictionVelocity = 6.612
+getgenv().CheckIfJumped = true
+getgenv().Smoothness = true
+getgenv().SmoothnessAmount = 0.0335
+loadstring(game:HttpGet("https://raw.githubusercontent.com/z4jr/kyanitecc/main/smooth"))()
+getgenv().Key = Enum.KeyCode.Q
+getgenv().Prediction = 0.178
+getgenv().ChatMode = false
+getgenv().NotifMode = false
+getgenv().PartMode = true
+getgenv().AirshotFunccc = true
+getgenv().Partz = "HumanoidRootPart"
+getgenv().AutoPrediction = true
+-----------
+repeat
+	wait()
+until game:IsLoaded() and game.Players.LocalPlayer.Character:FindFirstChild("FULLY_LOADED_CHAR")
+
+
+if getgenv().INSOLOADED == true then
+	game.StarterGui:SetCore("SendNotification", {
+		Title = "Kyanite";
+		Text = "Is already loaded!";
+	})
+	return
+end
+getgenv().INSOLOADED = true
+	for L_170_forvar0, L_171_forvar1 in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+		if L_171_forvar1:IsA("BasePart") then
+			L_171_forvar1:Destroy()
+		end
+	end
+-----------
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/z4jr/uilib/main/79887987789", true))()
+local watermark = library:CreateWatermark("Kyanite | {game} | {fps}")
+local main = library:CreateWindow("Kyanite", Vector2.new(492, 552), Enum.KeyCode.RightShift)
+-----------
+local main = main:CreateTab("Main")
+local section1 = main:CreateSector("Silent Aim")
+local section2 = main:CreateSector("FOV", "Right")
+local section3 = main:CreateSector("Smooth Aim")
+local section4 = main:CreateSector("ESP", "Right")
+local section5 = main:CreateSector("Auto-Buy", "Right")
+local section6 = main:CreateSector("Crosshair")
+local section7 = main:CreateSector("Misc", "Right")
+local section8 = main:CreateSector("Anti")
+local section9 = main:CreateSector("Watermark", "Right")
+-----------
+local toggle = section1:AddToggle("Enable", false, function(c1)
+	getgenv().Target = c1
+end)
+
+local toggle = section1:AddToggle("Airshot", false, function(c2)
+	getgenv().AirshotFunccc = c2
+end)
+
+local toggle = section1:AddToggle("Auto Adjust", false, function(c3)
+	getgenv().AutoPrediction = c3
+end)
+
+local toggle = section1:AddToggle("Notification", false, function(c4)
+	getgenv().NotifMode = c4
+end)
+
+local dropdown = section1:AddDropdown("Target Part",  {
+	"Head",
+	"UpperTorso",
+	"HumanoidRootPart",
+	"LowerTorso",
+	"RightFoot"
+}, "UpperTorso", function(partzz)
+    getgenv().Partz = partzz
+end)
+-----------
+local toggle1 = section2:AddToggle("Show FOV", false, function(boobs)
+	circle.Visible = boobs
+end)
+
+local toggle = section2:AddToggle("Filled", false, function(boob)
+	circle.Filled = boob
+end)
+
+local slider = section2:AddSlider("Size", 0, 1, 600, 1, function(boobie)
+	circle.Radius = boobie
+end)
+
+local slider = section2:AddSlider("Thickness", 0, 1, 100, 1, function(boobies)
+	circle.Thickness = boobies
+end)
+
+local slider = section2:AddSlider("Sides", 0, 1, 350, 1, function(cock)
+	circle.NumSides = cock
+end)
+
+toggle1:AddColorpicker(Color3.new(), function(booba)
+	circle.Color = booba
+end)
+-----------
+local toggle2 = section3:AddToggle("Enable", false, function(boobss)
+	getgenv().ThirdPerson = boobss
+    getgenv().FirstPerson = boobss
+end)
+
+local slider = section3:AddSlider("Smoothness", 0, 0.1, 1, 10, function(cock)
+	getgenv().SmoothnessAmount = cock
+end)
+
+local slider = section3:AddSlider("Prediction", 0, 0.1, 15, 20, function(cock3)
+	getgenv().PredictionVelocity = cock3
+end)
+
+local slider = section3:AddSlider("Radius", 0, 1, 100, 1, function(cock2)
+	getgenv().AimRadius = cock2
+end)
+
+local dropdown = section3:AddDropdown("Target Part",  {
+	"Head",
+	"UpperTorso",
+	"HumanoidRootPart",
+	"LowerTorso",
+	"RightFoot"
+}, "UpperTorso", function(partzz1)
+    getgenv().AimPart = partzz1
+    getgenv().OldAimPart = partzz1
+end)
+
+local textbox = section3:AddTextbox("C", "", function(keybind)
+	getgenv().AimlockKey = keybind
+end)
+-----------
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/trendyylol/roblox/main/Libraries/ESP/Pikahub"))()
+local library = loadstring(game:HttpGet("https://pastebin.com/raw/U2HwmEyF"))()
+
+
+local toggle4 = section4:AddToggle("Boxes", false, function(boobss)
+    getgenv().PikaESPSettings.Box = boobss
+end)
+
+local toggle4 = section4:AddToggle("Names", false, function(boobss)
+    getgenv().PikaESPSettings.Name = boobss
+end)
+
+local toggle4 = section4:AddToggle("Tracers", false, function(boobss)
+    getgenv().PikaESPSettings.Tracers = boobss
+end)
+
+local toggle4 = section4:AddToggle("Unlock Tracers", false, function(boobss)
+    getgenv().PikaESPSettings.UnlockTracers = boobss
+end)
+-----------
+local toggle5 = section5:AddToggle("Revolver", false, function()
+    	L_10_ = game:GetService'Players'.LocalPlayer
+	local L_498_ = '[Revolver] - $1300'
+	local L_499_ = game.Workspace.Ignored.Shop[L_498_]
+	local L_500_ = L_10_.Character.HumanoidRootPart.Position
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = L_499_.Head.CFrame + Vector3.new(0, 3, 0)
+	wait(0.5)
+	fireclickdetector(game.Workspace.Ignored.Shop[L_498_].ClickDetector)
+	fireclickdetector(game.Workspace.Ignored.Shop[L_498_].ClickDetector)
+	L_10_.Character.HumanoidRootPart.CFrame = CFrame.new(L_500_)
+	L_10_.Character.HumanoidRootPart.CFrame = CFrame.new(L_500_)
+end)
+local toggle5 = section5:AddToggle("Revolver Ammo", false, function()
+    	L_10_ = game:GetService'Players'.LocalPlayer
+	local L_501_ = '12 [Revolver Ammo] - $75'
+	local L_502_ = game.Workspace.Ignored.Shop[L_501_]
+	local L_503_ = L_10_.Character.HumanoidRootPart.Position
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = L_502_.Head.CFrame + Vector3.new(0, 3, 0)
+	wait(0.5)
+	fireclickdetector(game.Workspace.Ignored.Shop[L_501_].ClickDetector)
+	fireclickdetector(game.Workspace.Ignored.Shop[L_501_].ClickDetector)
+	L_10_.Character.HumanoidRootPart.CFrame = CFrame.new(L_503_)
+	L_10_.Character.HumanoidRootPart.CFrame = CFrame.new(L_503_)
+end)
+
+local toggle5 = section5:AddToggle("Double-Barrel", false, function()
+    	L_10_ = game:GetService'Players'.LocalPlayer
+	local L_504_ = game.Workspace.Ignored.Shop['[Double-Barrel SG] - $1400']
+	local L_505_ = L_10_.Character.HumanoidRootPart.Position
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = L_504_.Head.CFrame + Vector3.new(0, 3, 0)
+	wait(0.5)
+	fireclickdetector(game.Workspace.Ignored.Shop['[Double-Barrel SG] - $1400'].ClickDetector)
+	fireclickdetector(game.Workspace.Ignored.Shop['[Double-Barrel SG] - $1400'].ClickDetector)
+	L_10_.Character.HumanoidRootPart.CFrame = CFrame.new(L_505_)
+	L_10_.Character.HumanoidRootPart.CFrame = CFrame.new(L_505_)
+end)
+
+local toggle5 = section5:AddToggle("Double-Barrel Ammo", false, function()
+    	L_10_ = game:GetService'Players'.LocalPlayer
+	local L_506_ = game.Workspace.Ignored.Shop['18 [Double-Barrel SG Ammo] - $60']
+	local L_507_ = L_10_.Character.HumanoidRootPart.Position
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = L_506_.Head.CFrame + Vector3.new(0, 3, 0)
+	wait(0.5)
+	fireclickdetector(game.Workspace.Ignored.Shop['18 [Double-Barrel SG Ammo] - $60'].ClickDetector)
+	fireclickdetector(game.Workspace.Ignored.Shop['18 [Double-Barrel SG Ammo] - $60'].ClickDetector)
+	L_10_.Character.HumanoidRootPart.CFrame = CFrame.new(L_507_)
+	L_10_.Character.HumanoidRootPart.CFrame = CFrame.new(L_507_)
+end)
+local toggle5 = section5:AddToggle("Popcorn", false, function()
+        local LocalPlayer = game:GetService "Players".LocalPlayer
+        local k = game.Workspace.Ignored.Shop["[Popcorn] - $7"]
+        local savedsilencerpos = LocalPlayer.Character.HumanoidRootPart.Position
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = k.Head.CFrame + Vector3.new(0, 3, 0)
+        wait(0.5)
+        fireclickdetector(game.Workspace.Ignored.Shop["[Popcorn] - $7"].ClickDetector)
+        fireclickdetector(game.Workspace.Ignored.Shop["[Popcorn] - $7"].ClickDetector)
+        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(savedsilencerpos)
+        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(savedsilencerpos)
+end)
+-----------
+local toggle6 = section6:AddToggle("Top", true, function(val)
+	game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Aim.Top.Visible = val
+end)
+
+local toggle6 = section6:AddToggle("Bottom", true, function(val)
+	game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Aim.Bottom.Visible = val
+end)
+
+local toggle6 = section6:AddToggle("Right", true, function(val)
+	game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Aim.Right.Visible = val
+end)
+
+local toggle6 = section6:AddToggle("Left", true, function(val)
+	game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Aim.Left.Visible = val
+end)
+-----------
+local toggle7 = section7:AddToggle("Auto Stomp", false, function(L_173_arg0)
+		autostomp = L_173_arg0
+	game:GetService("RunService").Stepped:connect(function()
+		if autostomp then
+			game.ReplicatedStorage.MainEvent:FireServer("Stomp")
+		end
+	end)
+	L_10_ = game.Players.LocalPlayer
+	L_11_ = L_10_:GetMouse()
+	L_11_.KeyDown:connect(function(L_174_arg0)
+		if L_174_arg0 == "h" then
+			autostomp = not autostomp
+			game.ReplicatedStorage.MainEvent:FireServer("Stomp")
+		end
+	end)
+end)
+
+local toggle7 = section7:AddToggle("Auto Drop", false, function(L_173_arg0)
+			autodrop = L_173_arg0
+	game:GetService("RunService").Stepped:connect(function()
+		if autodrop then
+			game:GetService("ReplicatedStorage").MainEvent:FireServer("DropMoney","10000")
+		end
+	end)
+	L_10_ = game.Players.LocalPlayer
+	L_11_ = L_10_:GetMouse()
+	L_11_.KeyDown:connect(function(L_174_arg0)
+		if L_174_arg0 == "h" then
+			autodrop = not autodrop
+			game:GetService("ReplicatedStorage").MainEvent:FireServer("DropMoney","10000")
+		end
+	end)
+end)
+
+local toggle7 = section7:AddToggle("Auto Reload", false, function(L_173_arg0)
+    			reloadx = L_173_arg0
+	game:GetService("RunService").Stepped:connect(function()
+		if reloadx then
+			        if game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool") then
+            if
+                game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild(
+                    "Ammo"
+                )
+             then
+                if
+                    game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild(
+                        "Ammo"
+                    ).Value <= 0
+                 then
+                    game:GetService("ReplicatedStorage").MainEvent:FireServer(
+                        "Reload",
+                        game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool")
+                    )
+                end
+            end
+        end
+		end
+	end)
+	L_10_ = game.Players.LocalPlayer
+	L_11_ = L_10_:GetMouse()
+	L_11_.KeyDown:connect(function(L_174_arg0)
+		if L_174_arg0 == "h" then
+			reloadx = not reloadx
+			        if game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool") then
+            if
+                game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild(
+                    "Ammo"
+                )
+             then
+                if
+                    game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild(
+                        "Ammo"
+                    ).Value <= 0
+                 then
+                    game:GetService("ReplicatedStorage").MainEvent:FireServer(
+                        "Reload",
+                        game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool")
+                    )
+                end
+            end
+        end
+		end
+	end)
+end)
+
+local toggle7 = section7:AddToggle("Cash Aura", false, function(L_173_arg0)
+				cashaura = L_173_arg0
+	game:GetService("RunService").Stepped:connect(function()
+		if cashaura then
+					for i,v in pairs(game.Workspace.Ignored.Drop:GetChildren()) do
+			if v:IsA('Part') then
+				if (v.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 13.8 then
+					fireclickdetector(v:FindFirstChild('ClickDetector'))
+				end
+			end
+		end
+		end
+	end)
+	L_10_ = game.Players.LocalPlayer
+	L_11_ = L_10_:GetMouse()
+	L_11_.KeyDown:connect(function(L_174_arg0)
+		if L_174_arg0 == "h" then
+			cashaura = not cashaura
+					for i,v in pairs(game.Workspace.Ignored.Drop:GetChildren()) do
+			if v:IsA('Part') then
+				if (v.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 13.8 then
+					fireclickdetector(v:FindFirstChild('ClickDetector'))
+				end
+			end
+		end
+		end
+	end)
+end)
+-----------
+local toggle8 = section8:AddToggle("Anti Stomp", false, function(L_173_arg0)
+		antistomp = L_173_arg0
+	game:GetService("RunService").Stepped:connect(function()
+		if antistomp then
+			        if game.Players.LocalPlayer.Character.Humanoid.Health <= 5 then
+            for i, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+                if v:IsA("BasePart") then
+                    v:Destroy()
+                end
+            end
+        end
+		end
+	end)
+	L_10_ = game.Players.LocalPlayer
+	L_11_ = L_10_:GetMouse()
+	L_11_.KeyDown:connect(function(L_174_arg0)
+		if L_174_arg0 == "h" then
+			antistomp = not antistomp
+			        if game.Players.LocalPlayer.Character.Humanoid.Health <= 5 then
+            for i, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+                if v:IsA("BasePart") then
+                    v:Destroy()
+                end
+            end
+        end
+		end
+	end)
+end)
+
+local toggle8 = section8:AddToggle("Anti Bag", false, function(L_173_arg0)
+		antibag = L_173_arg0
+	game:GetService("RunService").Stepped:connect(function()
+		if antibag then
+			game.Players.LocalPlayer.Character["Christmas_Sock"]:Destroy()
+		end
+	end)
+	L_10_ = game.Players.LocalPlayer
+	L_11_ = L_10_:GetMouse()
+	L_11_.KeyDown:connect(function(L_174_arg0)
+		if L_174_arg0 == "h" then
+			antibag = not antibag
+			game.Players.LocalPlayer.Character["Christmas_Sock"]:Destroy()
+		end
+	end)
+end)
+-----------
+local watermark = section9:AddToggle("Watermark", true, function(real)
+	watermark.Visible = real
+end)
+-----------
+    _G.Types = {
+        Ball = Enum.PartType.Ball,
+        Block = Enum.PartType.Block, 
+        Cylinder = Enum.PartType.Cylinder
+    }
+    
+    --variables                 
+    	local Tracer = Instance.new("Part", game.Workspace)
+    Tracer.Name = "gay"	
+    Tracer.Anchored = true		
+    Tracer.CanCollide = false
+    Tracer.Transparency = 1
+    Tracer.Parent = game.Workspace	
+    Tracer.Shape = _G.Types.Ball
+    Tracer.Size = Vector3.new(2,2,2)
+    Tracer.Color = Color3.fromRGB(0,0,255)
+    
+    --
+    local plr = game.Players.LocalPlayer
+local mouse = plr:GetMouse()
+local Runserv = game:GetService("RunService")
+
+circle = Drawing.new("Circle")
+circle.Color = Color3.fromRGB(0,0,0)
+circle.Thickness = 0
+circle.NumSides = 124
+circle.Radius = 200
+circle.Thickness = 3
+circle.Transparency = 0.5
+circle.Visible = false
+circle.Filled = false
+
+Runserv.RenderStepped:Connect(function()
+    circle.Position = Vector2.new(mouse.X,mouse.Y+35)
+end)
+    
+    	local guimain = Instance.new("Folder", game.CoreGui)
+    	local CC = game:GetService"Workspace".CurrentCamera
+    local LocalMouse = game.Players.LocalPlayer:GetMouse()
+    	local Locking = false
+    
+    	
+    --
+    
+        local UserInputService = game:GetService("UserInputService")
+
+    UserInputService.InputBegan:Connect(function(keygo,ok)
+           if (not ok) then
+           if (keygo.KeyCode == getgenv().Key) then
+               if getgenv().Target == true then
+               Locking = not Locking
+               
+               if Locking then
+               Plr =  getClosestPlayerToCursor()
+                if getgenv().ChatMode then
+        local A_1 = "Target: "..tostring(Plr.Character.Humanoid.DisplayName) local A_2 = "All" local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest Event:FireServer(A_1, A_2) 
+        	end	
+               if getgenv().NotifMode then
+    			game.StarterGui:SetCore("SendNotification", {
+        Title = "";
+        Text = "Target: "..tostring(Plr.Character.Humanoid.DisplayName);
+    
+    })
+    end
+    elseif not Locking then
+         if getgenv().ChatMode then
+        local A_1 = "Unlocked!" local A_2 = "All" local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest Event:FireServer(A_1, A_2) 
+        	end	
+        if getgenv().NotifMode then
+                        game.StarterGui:SetCore("SendNotification", {
+                   Title = "",
+                   Text = "Unlocked",
+                   Duration = 5
+               })
+           elseif getgenv().Target == false then
+                        game.StarterGui:SetCore("SendNotification", {
+                   Title = "",
+                   Text = "Target isn't enabled",
+                   Duration = 5
+     
+                   })
+               
+               end
+                  
+ 
+ end     end   
+end
+end
+end)
+	
+	function getClosestPlayerToCursor()
+		local closestPlayer
+		local shortestDistance = circle.Radius
+
+		for i, v in pairs(game.Players:GetPlayers()) do
+			if v ~= game.Players.LocalPlayer and v.Character and v.Character:FindFirstChild("Humanoid") and v.Character.Humanoid.Health ~= 0 and v.Character:FindFirstChild("LowerTorso") then
+				local pos = CC:WorldToViewportPoint(v.Character.PrimaryPart.Position)
+				local magnitude = (Vector2.new(pos.X, pos.Y) - Vector2.new(LocalMouse.X, LocalMouse.Y)).magnitude
+				if magnitude < shortestDistance then
+					closestPlayer = v
+					shortestDistance = magnitude
+				end
+			end
+		end
+		return closestPlayer
+	end
+--
+if getgenv().PartMode then
+	game:GetService"RunService".Stepped:connect(function()
+		if Locking and Plr.Character and Plr.Character:FindFirstChild("LowerTorso") then
+			Tracer.CFrame = CFrame.new(Plr.Character.LowerTorso.Position+(Plr.Character.LowerTorso.Velocity*Prediction))
+		else
+			Tracer.CFrame = CFrame.new(0, 9999, 0)
+
+		end
+	end)
+end
+
+    
+    
+    --
+	local rawmetatable = getrawmetatable(game)
+	local old = rawmetatable.__namecall
+	setreadonly(rawmetatable, false)
+	rawmetatable.__namecall = newcclosure(function(...)
+		local args = {...}
+		if Locking and getnamecallmethod() == "FireServer" and args[2] == "UpdateMousePos" then
+			args[3] = Plr.Character[getgenv().Partz].Position+(Plr.Character[getgenv().Partz].Velocity*Prediction)
+			return old(unpack(args))
+		end
+		return old(...)
+	end)
+
+
+if getgenv().AirshotFunccc == true then
+
+            if Plr.Character.Humanoid.Jump == true and Plr.Character.Humanoid.FloorMaterial == Enum.Material.Air then
+                getgenv().Partz = "RightFoot"
+            else
+                Plr.Character:WaitForChild("Humanoid").StateChanged:Connect(function(old,new)
+                    if new == Enum.HumanoidStateType.Freefall then
+                    getgenv().Partz = "RightFoot"
+                    else
+                        getgenv().Partz = "LowerTorso"
+                    end
+                end)
+            end
+end
+---
+	while wait() do
+	if getgenv().AutoPrediction == true then
+        local pingvalue = game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString()
+        local split = string.split(pingvalue,'(')
+        local ping = tonumber(split[1])
+        if ping < 130 then
+            getgenv().Prediction = 0.151
+        elseif ping < 125 then
+            getgenv().Prediction = 0.149
+        elseif ping < 110 then
+            getgenv().Prediction = 0.146
+        elseif ping < 105 then
+            getgenv().Prediction = 0.138
+        elseif ping < 90 then
+            getgenv().Prediction = 0.136
+        elseif ping < 80 then
+            getgenv().Prediction = 0.134
+        elseif ping < 70 then
+            getgenv().Prediction = 0.131
+        elseif ping < 60 then
+            getgenv().Prediction = 0.1229
+        elseif ping < 50 then
+            getgenv().Prediction = 0.1225
+        elseif ping < 40 then
+            getgenv().Prediction = 0.1256
+        end
+	end
+	end
